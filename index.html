@@ -47,9 +47,35 @@
   <img src="assets/images/Logo/logo.png" alt=" Your Image" class="preloader-image">
 </div>
 <style>
+  body {
+    overflow-x: hidden !important;
+}
+html, body {
+    overflow-x: hidden; 
+}
   .cart-dropdown .dropdown-toggle .cart-count {
     top: -0.3rem !important;
   }
+   .header {
+    padding: 10px;  
+}
+
+.close-icon {
+    cursor: pointer;
+    font-size: 40px;  
+    line-height: 1;  
+    width: 40px; 
+    height: 40px;  
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+@media (max-width: 430px) {
+    .logo-container-education {
+width: 80px !important;
+    }}
 
   .iframe-container iframe {
     top: 0px !important;
@@ -318,6 +344,12 @@
     </div>
 </section> <!-- ====== End Top Bar ====== -->
 <!-- ======= Header ======= -->
+ <style>
+  .d-none {
+    display: none;
+}
+
+ </style>
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
@@ -325,9 +357,8 @@
                     class="lazy-image"></a>
             <h1 class="logo mx-2"><a href="#about">mabuzar<span>.</span></a></h1>
         </div>
-
         <nav class="navbar">
-            <ul>
+            <ul id="nav-links" class="d-none d-lg-flex"> <!-- Always visible on large screens -->
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
                 <li><a class="nav-link scrollto" href="#skills">Skills</a></li>
                 <li><a class="nav-link scrollto" href="#experience">Experience</a></li>
@@ -337,10 +368,34 @@
                 <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
             </ul>
-            <i href="javascript:void(0);" class="fas fa-list mobile-nav-toggle  d-inline d-lg-none text-white"></i>
+            <i id="mobile-nav-toggle" class="fas fa-list mobile-nav-toggle d-inline d-lg-none text-white"></i>
         </nav>
     </div>
 </header>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const navToggle = document.getElementById('mobile-nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    const links = navLinks.getElementsByTagName('a');
+
+    navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('d-none'); // Toggle visibility of the nav links only on smaller screens
+        navToggle.classList.toggle('fa-list'); // Switch to cross icon
+        navToggle.classList.toggle('fa-times'); // Change icon to 'x' when active
+    });
+
+    // Close the navigation when a link is clicked by simulating a click on the toggle
+    Array.from(links).forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth < 992) { // Check if on a small screen
+                navToggle.click(); // This simulates a click on the toggle button
+            }
+        });
+    });
+});
+</script>
+
 
     <div class="rainposition">
       <div class="rain rain1"></div>
@@ -843,11 +898,11 @@
                 <div class="timeline-content flex-grow-1">
                   <div class="text-center">
                     <div class="projectimagecontainer">
-                      <img src="assets/images/projects/QuickCV/home_eng.png" alt="QuickCV" class="projectimage">
+                      <img src="assets/images/projects/Fikker/price_variant.jpg" alt="Fikker" class="projectimage">
                     </div>
                   </div>
                   <div class="p-2">
-                    <h5 class="mb-0 h6">Sign Makers (Localization)</h5>
+                    <h5 class="mb-0 h6">Fikker (Online Store Management)</h5>
                   </div>
                 </div>
               </div>
@@ -908,7 +963,7 @@
               <div class="education-item d-flex align-items-start">
                 <div class="timeline-content flex-grow-1">
                   <div class="d-flex">
-                    <div class="logo-container">
+                    <div class="logo-container logo-container-education">
                       <img src="assets/images/Logo/mnsuet_logo.png" alt="">
                     </div>
                     <div class="px-2">
@@ -935,7 +990,7 @@
               <div class="education-item d-flex align-items-start">
                 <div class="timeline-content flex-grow-1">
                   <div class="d-flex">
-                    <div class="logo-container">
+                    <div class="logo-container logo-container-education">
                       <img src="assets/images/Logo/superior_clg.png" alt="">
                     </div>
                     <div class="px-2">
@@ -959,7 +1014,7 @@
               <div class="education-itemlast d-flex align-items-start">
                 <div class="timeline-content flex-grow-1">
                   <div class="d-flex">
-                    <div class="logo-container">
+                    <div class="logo-container logo-container-education">
                       <img src="assets/images/Logo/muslim_school.jpg" alt="">
                     </div>
                     <div class="px-2">
@@ -1000,7 +1055,6 @@
             <div class="section-header">
               <h5 class="wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms"
                 style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInLeft;">
-                <img class="me-1" src="assets/images/icon/section-title.png" alt="icon">
                 Our offering
               </h5>
               <h2 class="text-white wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms"
@@ -1146,19 +1200,20 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
       <!-- Modals  -->
+  
       <!-- project 1 images  -->
       <div class="modal fade" id="projectimagemodal1" tabindex="-1" aria-labelledby="imageModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <div class="d-flex justify-content-between w-100">
-                <div>
-                  <h5 class="m-0 font-weight-bold"> Shopus - Online Store Management </h5>
-                </div>
-                <span style="cursor: pointer; font-size:23px;" class="ion-ios-close close-modal"
-                  aria-label="Close">&times;</span>
-              </div>
+             <div class="header d-flex justify-content-between align-items-center w-100">
+    <div class="flex-grow-1"> <!-- Centering text -->
+        <h5 class="m-0 font-weight-bold">Shopus - Online Store Management</h5>
+    </div>
+    <span class="ion-ios-close close-modal close-icon" aria-label="Close">&times;</span>
+</div>
+
               <script>
                 $(document).ready(function () {
                   $('.close-modal').click(function () {
@@ -1290,8 +1345,7 @@
                   <h5 class="m-0 font-weight-bold">GoDriveNet (A unified Platform For Cloud Storage With Social
                     Networking) </h5>
                 </div>
-                <span style="cursor: pointer; font-size:23px;" class="ion-ios-close close-modal"
-                  aria-label="Close">&times;</span>
+                <span class="ion-ios-close close-modal close-icon" aria-label="Close">&times;</span>
               </div>
               <script>
                 $(document).ready(function () {
@@ -1448,8 +1502,7 @@
                 <div>
                   <h5 class="m-0 font-weight-bold">Eboss (eBay Integration Management System) </h5>
                 </div>
-                <span style="cursor: pointer; font-size:23px;" class="ion-ios-close close-modal"
-                  aria-label="Close">&times;</span>
+               <span class="ion-ios-close close-modal close-icon" aria-label="Close">&times;</span>
               </div>
               <script>
                 $(document).ready(function () {
@@ -1604,8 +1657,7 @@
                 <div>
                   <h5 class="m-0 font-weight-bold">Eboss (eBay Integration Management System) </h5>
                 </div>
-                <span style="cursor: pointer; font-size:23px;" class="ion-ios-close close-modal"
-                  aria-label="Close">&times;</span>
+                <span class="ion-ios-close close-modal close-icon" aria-label="Close">&times;</span>
               </div>
               <script>
                 $(document).ready(function () {
