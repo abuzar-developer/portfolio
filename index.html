@@ -366,73 +366,78 @@
     <section id="about" class="lightning-section d-flex align-items-center" style=" margin: 0  ;overflow: hidden; ">
       <canvas id="canvas"></canvas>
 
-      <div class="container pt-4">
-        <div class="row align-items-center">
-          <div class="col-sm-12 col-md-12 col-lg-6 pt-md-0 pt-4">
-            <h2 class="mb-lg-4 mb-3 title text-white" style="font-weight: 700;">Welcome to My Personal Portfolio</h2>
-            <h4 class="mb-lg-4 mb-3 title typing-demo typed-text text-white h1"
-              style="font-weight: 700; font-family: 'Raleway', sans-serif !important;">Hello, I'm
-              <span class="text-default">Muhammad Abuzar</span>
-            </h4>
-            <p class="text-light ">
-              a passionate web developer with a
-              Bachelor's degree in Computer Science and hands-on experience in both frontend and backend development. My
-              expertise includes PHP Laravel.
+    <div class="container pt-4">
+  <div class="row align-items-center">
+    <div class="col-sm-12 col-md-12 col-lg-6 pt-md-0 pt-4">
+      <h2 class="mb-lg-4 mb-3 title text-white" style="font-weight: 700;">Welcome to My Personal Portfolio</h2>
+      <h4 class="mb-lg-4 mb-3 title typing-demo typed-text text-white h1"
+        style="font-weight: 700; font-family: 'Raleway', sans-serif !important;">Hello, I'm
+        <span class="text-default">Muhammad Abuzar</span>
+      </h4>
+      <p class="text-light">
+        a passionate web developer with a Bachelor's degree in Computer Science and hands-on experience in both frontend and backend development. My expertise includes PHP Laravel.
+      </p>
+      <p class="text-light">
+        This portfolio showcases my journey, skills, and projects, reflecting my dedication to creating functional and visually appealing web solutions.
+      </p>
 
-            </p>
-            <p class="text-light ">
-              This portfolio showcases my journey, skills, and projects, reflecting my
-              dedication to creating
-              functional and visually appealing web solutions.
-            </p>
-            <?php
-            $birthDate = '2001-11-27';
-            function calculateAge($birthDate)
-            {
-              $birthDate = new DateTime($birthDate);
-              $currentDate = new DateTime();
-              $age = $currentDate->diff($birthDate);
-              return $age->y;
+      <!-- JavaScript to calculate age -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const birthDate = '2001-11-27';
+
+          function calculateAge(birthDate) {
+            const birthDateObj = new Date(birthDate);
+            const currentDate = new Date();
+            let age = currentDate.getFullYear() - birthDateObj.getFullYear();
+            const monthDiff = currentDate.getMonth() - birthDateObj.getMonth();
+            const dayDiff = currentDate.getDate() - birthDateObj.getDate();
+
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+              age--;  
             }
-            $age = calculateAge($birthDate);
-            ?>
-            <div class="row py-3">
-              <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
-                <ul class="aboutdetail">
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>27 Nov 2001</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+92 3042326123</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Multan, Pakistan</span></li>
-                </ul>
-              </div>
-              <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
-                <ul class="aboutdetail">
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span><?php echo $age; ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>abuzarch1100@gmail.com</span>
-                  </li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="my-4">
-              <button class="btn button-style-course">
-                Check Resume
-              </button>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-6 mt-md-0 mt-4 ">
-            <div class="special-section d-flex justify-content-center align-items-center animate-up-down">
-              <div class="circle">
-                <div class="animated circle">
-                  <div class="animated ">
-                  </div>
-                </div>
-              </div>
+            return age;
+          }
 
-            </div>
-          </div>
+          const age = calculateAge(birthDate);
+          document.getElementById("age").textContent = age;
+        });
+      </script>
 
+      <div class="row py-3">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+          <ul class="aboutdetail">
+            <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>27 Nov 2001</span></li>
+            <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+92 3042326123</span></li>
+            <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Multan, Pakistan</span></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+          <ul class="aboutdetail">
+            <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span id="age"></span></li>
+            <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>abuzarch1100@gmail.com</span></li>
+            <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+          </ul>
         </div>
       </div>
+
+      <div class="my-4">
+        <button class="btn button-style-course">
+          Check Resume
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 mt-md-0 mt-4">
+      <div class="special-section d-flex justify-content-center align-items-center animate-up-down">
+        <div class="circle">
+          <div class="animated circle">
+            <div class="animated"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
     </section>
     <main>
