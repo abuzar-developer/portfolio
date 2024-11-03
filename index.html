@@ -45,6 +45,57 @@ html, body {
             flex-direction: column;
             align-items: center; 
         }
+.gallery-title
+{
+    font-size: 36px;
+    color: #29ab87 ;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #12bc8c ;
+    border-radius: 5px;
+    text-align: center;
+    color: #29ab87 ;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #29ab87 ;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #29ab87 ;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #29ab87 ;
+    color: white;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
 
         .resume-iframe {
             width: 100%;
@@ -1114,7 +1165,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <!-- Gallery -->
-<!-- <section id="gallery" class="d-flex align-items-center" style="margin: 0; background: #1a032b; overflow: hidden;">
+<section id="gallery" class="d-flex align-items-center" style="margin: 0; background: #1a032b; overflow: hidden;">
     <div class="container pt-0">
         <div class="section-title" data-aos="fade-up" data-aos-delay="120">
             <h2>Gallery</h2>
@@ -1203,66 +1254,9 @@ $(this).addClass("active");
             <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
                 <img src="http://fakeimg.pl/365x365/" class="img-responsive">
             </div>
-        </div>
-        
+        </div> 
     </div>
-<style>
-
-.gallery-title
-{
-    font-size: 36px;
-    color: #29ab87 ;
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 70px;
-}
-.gallery-title:after {
-    content: "";
-    position: absolute;
-    width: 7.5%;
-    left: 46.5%;
-    height: 45px;
-    border-bottom: 1px solid #5e5e5e;
-}
-.filter-button
-{
-    font-size: 18px;
-    border: 1px solid #12bc8c ;
-    border-radius: 5px;
-    text-align: center;
-    color: #29ab87 ;
-    margin-bottom: 30px;
-
-}
-.filter-button:hover
-{
-    font-size: 18px;
-    border: 1px solid #29ab87 ;
-    border-radius: 5px;
-    text-align: center;
-    color: #ffffff;
-    background-color: #29ab87 ;
-
-}
-.btn-default:active .filter-button:active
-{
-    background-color: #29ab87 ;
-    color: white;
-}
-
-.port-image
-{
-    width: 100%;
-}
-
-.gallery_product
-{
-    margin-bottom: 30px;
-}
-
-</style>
-    </div>
-</section> -->
+</section>
 
       <!-- Modals  -->
       <!-- project 1 images  -->
