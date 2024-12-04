@@ -68,103 +68,6 @@
           </div>
       </header>
 
-      <script>
-          document.addEventListener("DOMContentLoaded", function () {
-              const navLinks = document.querySelectorAll("#nav-links li a");
-              const sections = document.querySelectorAll("section");
-
-              function updateActiveLink() {
-                  let currentSection = '';
-
-                  sections.forEach(section => {
-                      const sectionTop = section.offsetTop;
-                      const sectionHeight = section.clientHeight;
-                      const scrollY = window.pageYOffset;
-
-                      if (scrollY >= sectionTop - sectionHeight / 3) {
-                          currentSection = section.getAttribute('id');
-                      }
-                  });
-
-                  navLinks.forEach(link => {
-                      link.classList.remove('active');
-                      if (link.getAttribute('href') === `#${currentSection}`) {
-                          link.classList.add('active');
-                      }
-                  });
-              }
-
-              window.addEventListener('scroll', updateActiveLink);
-              updateActiveLink();  
-          });
-        
-          function showResume() {
-              const resumeSection = document.getElementById('resumeSection');
-              const resumeIframe = document.getElementById('resumeIframe');
-              resumeIframe.src = 'assets/documents/Resume/Resume.pdf'; 
-              resumeSection.style.display = 'block'; 
-          }
-      document.addEventListener("DOMContentLoaded", function() {
-          const navToggle = document.getElementById('mobile-nav-toggle');
-          const navLinks = document.getElementById('nav-links');
-          const links = navLinks.getElementsByTagName('a');
-          navToggle.addEventListener('click', function() {
-              navLinks.classList.toggle('d-none'); 
-              navToggle.classList.toggle('fa-list');  
-              navToggle.classList.toggle('fa-times'); 
-          });
-          Array.from(links).forEach(link => {
-              link.addEventListener('click', function() {
-                  if (window.innerWidth < 992) {  
-                      navToggle.click();  
-                  }
-              });
-          });
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-                    const birthDate = '2001-11-27';
-
-                    function calculateAge(birthDate) {
-                      const birthDateObj = new Date(birthDate);
-                      const currentDate = new Date();
-                      let age = currentDate.getFullYear() - birthDateObj.getFullYear();
-                      const monthDiff = currentDate.getMonth() - birthDateObj.getMonth();
-                      const dayDiff = currentDate.getDate() - birthDateObj.getDate();
-
-                      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-                        age--;  
-                      }
-                      return age;
-                    }
-
-                    const age = calculateAge(birthDate);
-                    document.getElementById("age").textContent = age;
-                  });
-
-                  $(document).ready(function(){
-
-          $(".filter-button").click(function(){
-              var value = $(this).attr('data-filter');
-              
-              if(value == "all")
-              {
-                  $('.filter').show('1000');
-              }
-              else
-              {
-                  $(".filter").not('.'+value).hide('3000');
-                  $('.filter').filter('.'+value).show('3000');
-              }
-          });
-          
-          if ($(".filter-button").removeClass("active")) {
-      $(this).removeClass("active");
-      }
-      $(this).addClass("active");
-
-      });
-      </script>
-
       <div class="rainposition">
         <div class="rain rain1"></div>
         <div class="rain rain2">
@@ -2335,8 +2238,8 @@
         animate();
 
         window.addEventListener("resize", function () {
-          canvas.width = document.querySelector(".lightning-section").clientWidth; // Resize based on section width
-          canvas.height = document.querySelector(".lightning-section").clientHeight; // Resize based on section height
+          canvas.width = document.querySelector(".lightning-section").clientWidth;  
+          canvas.height = document.querySelector(".lightning-section").clientHeight;  
         });
         document.addEventListener("DOMContentLoaded", function () {
           const lazyImages = document.querySelectorAll(".lazy-image");
@@ -2362,6 +2265,101 @@
             });
           }
         });
+          document.addEventListener("DOMContentLoaded", function () {
+              const navLinks = document.querySelectorAll("#nav-links li a");
+              const sections = document.querySelectorAll("section");
+
+              function updateActiveLink() {
+                  let currentSection = '';
+
+                  sections.forEach(section => {
+                      const sectionTop = section.offsetTop;
+                      const sectionHeight = section.clientHeight;
+                      const scrollY = window.pageYOffset;
+
+                      if (scrollY >= sectionTop - sectionHeight / 3) {
+                          currentSection = section.getAttribute('id');
+                      }
+                  });
+
+                  navLinks.forEach(link => {
+                      link.classList.remove('active');
+                      if (link.getAttribute('href') === `#${currentSection}`) {
+                          link.classList.add('active');
+                      }
+                  });
+              }
+
+              window.addEventListener('scroll', updateActiveLink);
+              updateActiveLink();  
+          });
+        
+          function showResume() {
+              const resumeSection = document.getElementById('resumeSection');
+              const resumeIframe = document.getElementById('resumeIframe');
+              resumeIframe.src = 'assets/documents/Resume/Resume.pdf'; 
+              resumeSection.style.display = 'block'; 
+          }
+      document.addEventListener("DOMContentLoaded", function() {
+          const navToggle = document.getElementById('mobile-nav-toggle');
+          const navLinks = document.getElementById('nav-links');
+          const links = navLinks.getElementsByTagName('a');
+          navToggle.addEventListener('click', function() {
+              navLinks.classList.toggle('d-none'); 
+              navToggle.classList.toggle('fa-list');  
+              navToggle.classList.toggle('fa-times'); 
+          });
+          Array.from(links).forEach(link => {
+              link.addEventListener('click', function() {
+                  if (window.innerWidth < 992) {  
+                      navToggle.click();  
+                  }
+              });
+          });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+                    const birthDate = '2001-11-27';
+
+                    function calculateAge(birthDate) {
+                      const birthDateObj = new Date(birthDate);
+                      const currentDate = new Date();
+                      let age = currentDate.getFullYear() - birthDateObj.getFullYear();
+                      const monthDiff = currentDate.getMonth() - birthDateObj.getMonth();
+                      const dayDiff = currentDate.getDate() - birthDateObj.getDate();
+
+                      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                        age--;  
+                      }
+                      return age;
+                    }
+
+                    const age = calculateAge(birthDate);
+                    document.getElementById("age").textContent = age;
+                  });
+
+                  $(document).ready(function(){
+
+          $(".filter-button").click(function(){
+              var value = $(this).attr('data-filter');
+              
+              if(value == "all")
+              {
+                  $('.filter').show('1000');
+              }
+              else
+              {
+                  $(".filter").not('.'+value).hide('3000');
+                  $('.filter').filter('.'+value).show('3000');
+              }
+          });
+          
+          if ($(".filter-button").removeClass("active")) {
+      $(this).removeClass("active");
+      }
+      $(this).addClass("active");
+
+      });
       </script>
+
   </body>
 </html>
