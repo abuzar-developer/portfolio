@@ -14,247 +14,6 @@
   <!--js-cdn-link-Gallery-->
   <script src="assets/js/jquery.3.6.4.min.js"></script> 
    <link rel="stylesheet" href="assets/css/custom.css">
-     <script src="assets/js/bootstrap.4.5.2.bundle.min.js"></script>  <!--  project -->
-      <script src="assets/js/bootstrap.bundle.min.js"></script> <!-- project --> 
-      <script>
-        const canvas = document.getElementById("canvas");
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
-        const ctx = canvas.getContext("2d");
-
-        const LEFT = "LEFT";
-        const RIGHT = "RIGHT";
-
-        const getDir = () => {
-          const dec = Math.floor(Math.random() * 30);
-          return dec < 16 ? LEFT : RIGHT;
-        };
-
-        class Cloud {
-          constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.size = Math.floor(Math.random() * 30);
-            this.clr = "silver";
-            this.dir = getDir();
-            this.speed = 0.3;  
-          }
-
-          moveLeft() {
-            this.x -= this.speed;
-          }
-
-          moveRight() {
-            this.x += this.speed;
-          }
-
-          update() {
-            if (this.x <= 0) {
-              this.dir = RIGHT;
-            } else if (this.x >= canvas.width) {
-              this.dir = LEFT;
-            }
-
-            this.dir === LEFT ? this.moveLeft() : this.moveRight();
-          }
-
-          drawRoot(x, y) {
-            let sx = x, sy = y, ex = sx + Math.floor(Math.random() * 50) - 15, ey = sy + Math.floor(Math.random() * 30);
-            let limit = Math.floor(Math.random() * 20);
-
-            for (let i = 0; i < limit; i++) {
-              ctx.beginPath();
-              ctx.strokeStyle = "silver";
-              ctx.lineWidth = 1;
-              ctx.moveTo(sx, sy);
-              ctx.lineTo(ex, ey);
-              ctx.stroke();
-              sx = ex;
-              sy = ey;
-              ex = sx + Math.floor(Math.random() * 50) - 15;
-              ey = sy + Math.floor(Math.random() * 30);
-            }
-          }
-
-          drawLightning() {
-            ctx.fillStyle = "rgba(26, 3, 43, 0.1)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            let sx = this.x, sy = this.y, ex = sx + Math.floor(Math.random() * 30) - 15, ey = sy + Math.floor(Math.random() * 30);
-            let limit = Math.floor(Math.random() * 20) + 15;
-
-            for (let i = 0; i < limit; i++) {
-              ctx.beginPath();
-              ctx.strokeStyle = "silver";
-              ctx.lineWidth = 3;
-              ctx.moveTo(sx, sy);
-              ctx.lineTo(ex, ey);
-              ctx.stroke();
-              sx = ex;
-              sy = ey;
-              ex = sx + Math.floor(Math.random() * 30) - 15;
-              ey = sy + Math.floor(Math.random() * 30);
-
-              if (Math.random() < 0.0001) {
-                this.drawRoot(sx, sy);
-              }
-            }
-          }
-
-          draw() {
-            ctx.beginPath();
-            ctx.fillStyle = "#1a032b";
-            ctx.arc(this.x, this.y, this.size, 0, 0 * Math.PI);
-            ctx.fill();
-
-            if (Math.floor(Math.random() * 100) < 3) {
-              this.drawLightning();
-            }
-          }
-        }
-
-        const clouds = [];
-        for (let i = 0; i < canvas.width; i += Math.floor(Math.random() * 1800) + 1) {
-          clouds.push(new Cloud(i, 0));
-        }
-
-        const animate = () => {
-          ctx.fillStyle = "#1a032b";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          for (let c of clouds) {
-            c.draw();
-            c.update();
-          }
-
-          requestAnimationFrame(animate);
-        };
-
-        animate();
-
-        window.addEventListener("resize", function () {
-          canvas.width = document.querySelector(".lightning-section").clientWidth;  
-          canvas.height = document.querySelector(".lightning-section").clientHeight;  
-        });
-        document.addEventListener("DOMContentLoaded", function () {
-          const lazyImages = document.querySelectorAll(".lazy-image");
-
-          if ("IntersectionObserver" in window) {
-            const imageObserver = new IntersectionObserver(function (entries, observer) {
-              entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                  const img = entry.target;
-                  img.src = img.dataset.src;
-                  img.classList.add("loaded");
-                  observer.unobserve(img);
-                }
-              });
-            });
-
-            lazyImages.forEach(function (image) {
-              imageObserver.observe(image);
-            });
-          } else {
-            lazyImages.forEach(function (img) {
-              img.src = img.dataset.src;
-            });
-          }
-        });
-          document.addEventListener("DOMContentLoaded", function () {
-              const navLinks = document.querySelectorAll("#nav-links li a");
-              const sections = document.querySelectorAll("section");
-
-              function updateActiveLink() {
-                  let currentSection = '';
-
-                  sections.forEach(section => {
-                      const sectionTop = section.offsetTop;
-                      const sectionHeight = section.clientHeight;
-                      const scrollY = window.pageYOffset;
-
-                      if (scrollY >= sectionTop - sectionHeight / 3) {
-                          currentSection = section.getAttribute('id');
-                      }
-                  });
-
-                  navLinks.forEach(link => {
-                      link.classList.remove('active');
-                      if (link.getAttribute('href') === `#${currentSection}`) {
-                          link.classList.add('active');
-                      }
-                  });
-              }
-
-              window.addEventListener('scroll', updateActiveLink);
-              updateActiveLink();  
-          });
-        
-          function showResume() {
-              const resumeSection = document.getElementById('resumeSection');
-              const resumeIframe = document.getElementById('resumeIframe');
-              resumeIframe.src = 'assets/documents/Resume/Resume.pdf'; 
-              resumeSection.style.display = 'block'; 
-          }
-      document.addEventListener("DOMContentLoaded", function() {
-          const navToggle = document.getElementById('mobile-nav-toggle');
-          const navLinks = document.getElementById('nav-links');
-          const links = navLinks.getElementsByTagName('a');
-          navToggle.addEventListener('click', function() {
-              navLinks.classList.toggle('d-none'); 
-              navToggle.classList.toggle('fa-list');  
-              navToggle.classList.toggle('fa-times'); 
-          });
-          Array.from(links).forEach(link => {
-              link.addEventListener('click', function() {
-                  if (window.innerWidth < 992) {  
-                      navToggle.click();  
-                  }
-              });
-          });
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-                    const birthDate = '2001-11-27';
-
-                    function calculateAge(birthDate) {
-                      const birthDateObj = new Date(birthDate);
-                      const currentDate = new Date();
-                      let age = currentDate.getFullYear() - birthDateObj.getFullYear();
-                      const monthDiff = currentDate.getMonth() - birthDateObj.getMonth();
-                      const dayDiff = currentDate.getDate() - birthDateObj.getDate();
-
-                      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-                        age--;  
-                      }
-                      return age;
-                    }
-
-                    const age = calculateAge(birthDate);
-                    document.getElementById("age").textContent = age;
-                  });
-
-                  $(document).ready(function(){
-
-          $(".filter-button").click(function(){
-              var value = $(this).attr('data-filter');
-              
-              if(value == "all")
-              {
-                  $('.filter').show('1000');
-              }
-              else
-              {
-                  $(".filter").not('.'+value).hide('3000');
-                  $('.filter').filter('.'+value).show('3000');
-              }
-          });
-          
-          if ($(".filter-button").removeClass("active")) {
-      $(this).removeClass("active");
-      }
-      $(this).addClass("active");
-
-      });
-      </script>
 </head>
   <!-- preloader -->
   <div id="preloader">
@@ -2360,7 +2119,247 @@
         <i class="fa fa-arrow-up"></i></a>
       <!-- Template Main JS File -->
       <script src="assets/js/main.js"></script> 
-    
+      <script src="assets/js/bootstrap.4.5.2.bundle.min.js"></script>  <!--  project -->
+      <script src="assets/js/bootstrap.bundle.min.js"></script> <!-- project --> 
+      <script>
+        const canvas = document.getElementById("canvas");
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+        const ctx = canvas.getContext("2d");
+
+        const LEFT = "LEFT";
+        const RIGHT = "RIGHT";
+
+        const getDir = () => {
+          const dec = Math.floor(Math.random() * 30);
+          return dec < 16 ? LEFT : RIGHT;
+        };
+
+        class Cloud {
+          constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.floor(Math.random() * 30);
+            this.clr = "silver";
+            this.dir = getDir();
+            this.speed = 0.3;  
+          }
+
+          moveLeft() {
+            this.x -= this.speed;
+          }
+
+          moveRight() {
+            this.x += this.speed;
+          }
+
+          update() {
+            if (this.x <= 0) {
+              this.dir = RIGHT;
+            } else if (this.x >= canvas.width) {
+              this.dir = LEFT;
+            }
+
+            this.dir === LEFT ? this.moveLeft() : this.moveRight();
+          }
+
+          drawRoot(x, y) {
+            let sx = x, sy = y, ex = sx + Math.floor(Math.random() * 50) - 15, ey = sy + Math.floor(Math.random() * 30);
+            let limit = Math.floor(Math.random() * 20);
+
+            for (let i = 0; i < limit; i++) {
+              ctx.beginPath();
+              ctx.strokeStyle = "silver";
+              ctx.lineWidth = 1;
+              ctx.moveTo(sx, sy);
+              ctx.lineTo(ex, ey);
+              ctx.stroke();
+              sx = ex;
+              sy = ey;
+              ex = sx + Math.floor(Math.random() * 50) - 15;
+              ey = sy + Math.floor(Math.random() * 30);
+            }
+          }
+
+          drawLightning() {
+            ctx.fillStyle = "rgba(26, 3, 43, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            let sx = this.x, sy = this.y, ex = sx + Math.floor(Math.random() * 30) - 15, ey = sy + Math.floor(Math.random() * 30);
+            let limit = Math.floor(Math.random() * 20) + 15;
+
+            for (let i = 0; i < limit; i++) {
+              ctx.beginPath();
+              ctx.strokeStyle = "silver";
+              ctx.lineWidth = 3;
+              ctx.moveTo(sx, sy);
+              ctx.lineTo(ex, ey);
+              ctx.stroke();
+              sx = ex;
+              sy = ey;
+              ex = sx + Math.floor(Math.random() * 30) - 15;
+              ey = sy + Math.floor(Math.random() * 30);
+
+              if (Math.random() < 0.0001) {
+                this.drawRoot(sx, sy);
+              }
+            }
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.fillStyle = "#1a032b";
+            ctx.arc(this.x, this.y, this.size, 0, 0 * Math.PI);
+            ctx.fill();
+
+            if (Math.floor(Math.random() * 100) < 3) {
+              this.drawLightning();
+            }
+          }
+        }
+
+        const clouds = [];
+        for (let i = 0; i < canvas.width; i += Math.floor(Math.random() * 1800) + 1) {
+          clouds.push(new Cloud(i, 0));
+        }
+
+        const animate = () => {
+          ctx.fillStyle = "#1a032b";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          for (let c of clouds) {
+            c.draw();
+            c.update();
+          }
+
+          requestAnimationFrame(animate);
+        };
+
+        animate();
+
+        window.addEventListener("resize", function () {
+          canvas.width = document.querySelector(".lightning-section").clientWidth;  
+          canvas.height = document.querySelector(".lightning-section").clientHeight;  
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+          const lazyImages = document.querySelectorAll(".lazy-image");
+
+          if ("IntersectionObserver" in window) {
+            const imageObserver = new IntersectionObserver(function (entries, observer) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  const img = entry.target;
+                  img.src = img.dataset.src;
+                  img.classList.add("loaded");
+                  observer.unobserve(img);
+                }
+              });
+            });
+
+            lazyImages.forEach(function (image) {
+              imageObserver.observe(image);
+            });
+          } else {
+            lazyImages.forEach(function (img) {
+              img.src = img.dataset.src;
+            });
+          }
+        });
+          document.addEventListener("DOMContentLoaded", function () {
+              const navLinks = document.querySelectorAll("#nav-links li a");
+              const sections = document.querySelectorAll("section");
+
+              function updateActiveLink() {
+                  let currentSection = '';
+
+                  sections.forEach(section => {
+                      const sectionTop = section.offsetTop;
+                      const sectionHeight = section.clientHeight;
+                      const scrollY = window.pageYOffset;
+
+                      if (scrollY >= sectionTop - sectionHeight / 3) {
+                          currentSection = section.getAttribute('id');
+                      }
+                  });
+
+                  navLinks.forEach(link => {
+                      link.classList.remove('active');
+                      if (link.getAttribute('href') === `#${currentSection}`) {
+                          link.classList.add('active');
+                      }
+                  });
+              }
+
+              window.addEventListener('scroll', updateActiveLink);
+              updateActiveLink();  
+          });
+        
+          function showResume() {
+              const resumeSection = document.getElementById('resumeSection');
+              const resumeIframe = document.getElementById('resumeIframe');
+              resumeIframe.src = 'assets/documents/Resume/Resume.pdf'; 
+              resumeSection.style.display = 'block'; 
+          }
+      document.addEventListener("DOMContentLoaded", function() {
+          const navToggle = document.getElementById('mobile-nav-toggle');
+          const navLinks = document.getElementById('nav-links');
+          const links = navLinks.getElementsByTagName('a');
+          navToggle.addEventListener('click', function() {
+              navLinks.classList.toggle('d-none'); 
+              navToggle.classList.toggle('fa-list');  
+              navToggle.classList.toggle('fa-times'); 
+          });
+          Array.from(links).forEach(link => {
+              link.addEventListener('click', function() {
+                  if (window.innerWidth < 992) {  
+                      navToggle.click();  
+                  }
+              });
+          });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+                    const birthDate = '2001-11-27';
+
+                    function calculateAge(birthDate) {
+                      const birthDateObj = new Date(birthDate);
+                      const currentDate = new Date();
+                      let age = currentDate.getFullYear() - birthDateObj.getFullYear();
+                      const monthDiff = currentDate.getMonth() - birthDateObj.getMonth();
+                      const dayDiff = currentDate.getDate() - birthDateObj.getDate();
+
+                      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                        age--;  
+                      }
+                      return age;
+                    }
+
+                    const age = calculateAge(birthDate);
+                    document.getElementById("age").textContent = age;
+                  });
+
+                  $(document).ready(function(){
+
+          $(".filter-button").click(function(){
+              var value = $(this).attr('data-filter');
+              
+              if(value == "all")
+              {
+                  $('.filter').show('1000');
+              }
+              else
+              {
+                  $(".filter").not('.'+value).hide('3000');
+                  $('.filter').filter('.'+value).show('3000');
+              }
+          });
+          
+          if ($(".filter-button").removeClass("active")) {
+      $(this).removeClass("active");
+      }
+      $(this).addClass("active");
+
+      });
+      </script>
 
   </body>
 </html>
