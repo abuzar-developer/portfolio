@@ -11,22 +11,10 @@
   <!-- Font-Awesome-Icons-CSS -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-  <script src="assets/js/bootstrap.bundle.min.js"></script> <!-- project -->
-  <!--js-cdn-link-3-drop-down-->
-  <script src="assets/js/jquery.3.6.4.min.js"></script> <!-- Gallery -->
+  <!--js-cdn-link-Gallery-->
+  <script src="assets/js/jquery.3.6.4.min.js"></script> 
    <link rel="stylesheet" href="assets/css/custom.css">
 </head>
-<style>
-  .lazy-image {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.lazy-image.loaded {
-  opacity: 1;
-}
-
-</style>
   <!-- preloader -->
   <div id="preloader">
     <div class="preloader-icon"></div>
@@ -884,7 +872,6 @@
         </div>
       </section>
 
-      <script src="assets/js/bootstrap.4.5.2.bundle.min.js"></script>
       <!-- Gallery -->
       <section id="gallery" class="d-flex align-items-center" style="margin: 0; background: #1a032b; overflow: hidden;">
           <div class="container pt-0">
@@ -2228,7 +2215,9 @@
       <a href="#" class="back-to-top text-white d-flex align-items-center justify-content-center">
         <i class="fa fa-arrow-up"></i></a>
       <!-- Template Main JS File -->
-      <script src="assets/js/main.js"></script>  
+      <script src="assets/js/main.js"></script> 
+      <script src="assets/js/bootstrap.4.5.2.bundle.min.js"></script>  <!--  project -->
+      <script src="assets/js/bootstrap.bundle.min.js"></script> <!-- project --> 
       <script>
         const canvas = document.getElementById("canvas");
         canvas.width = canvas.clientWidth;
@@ -2349,36 +2338,30 @@
           canvas.width = document.querySelector(".lightning-section").clientWidth; // Resize based on section width
           canvas.height = document.querySelector(".lightning-section").clientHeight; // Resize based on section height
         });
-      </script>
-<head>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const lazyImages = document.querySelectorAll(".lazy-image");
+        document.addEventListener("DOMContentLoaded", function () {
+          const lazyImages = document.querySelectorAll(".lazy-image");
 
-      if ("IntersectionObserver" in window) {
-        const imageObserver = new IntersectionObserver(function (entries, observer) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              const img = entry.target;
+          if ("IntersectionObserver" in window) {
+            const imageObserver = new IntersectionObserver(function (entries, observer) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  const img = entry.target;
+                  img.src = img.dataset.src;
+                  img.classList.add("loaded");
+                  observer.unobserve(img);
+                }
+              });
+            });
+
+            lazyImages.forEach(function (image) {
+              imageObserver.observe(image);
+            });
+          } else {
+            lazyImages.forEach(function (img) {
               img.src = img.dataset.src;
-              img.classList.add("loaded");
-              observer.unobserve(img);
-            }
-          });
+            });
+          }
         });
-
-        lazyImages.forEach(function (image) {
-          imageObserver.observe(image);
-        });
-      } else {
-        lazyImages.forEach(function (img) {
-          img.src = img.dataset.src;
-        });
-      }
-    });
-  </script>
-</head>
-
+      </script>
   </body>
-      
 </html>
