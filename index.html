@@ -6,13 +6,13 @@
   <meta name="theme-color" content="#29ab87">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" sizes="76x76" href="assets/images/Logo/logo.png">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all'">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
   <!-- Font-Awesome-Icons-CSS -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
   <!--js-cdn-link-Gallery-->
-  <script src="assets/js/jquery.3.6.4.min.js"></script> 
+  <script src="assets/js/jquery.3.6.4.min.js" defer></script> 
    <link rel="stylesheet" href="assets/css/custom.css">
 </head>
   <!-- preloader -->
@@ -2118,10 +2118,15 @@
       <a href="#" class="back-to-top text-white d-flex align-items-center justify-content-center">
         <i class="fa fa-arrow-up"></i></a>
       <!-- Template Main JS File -->
-      <script src="assets/js/main.js"></script> 
-      <script src="assets/js/bootstrap.4.5.2.bundle.min.js"></script>  <!--  project -->
-      <script src="assets/js/bootstrap.bundle.min.js"></script> <!-- project --> 
+      <script src="assets/js/main.js" defer></script> 
+      <script src="assets/js/bootstrap.4.5.2.bundle.min.js" defer></script>  <!--  project -->
+      <script src="assets/js/bootstrap.bundle.min.js" defer></script> <!-- project --> 
       <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'assets/css/style.css';
+        document.head.appendChild(link);
+
         const canvas = document.getElementById("canvas");
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
