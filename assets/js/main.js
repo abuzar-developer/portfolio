@@ -13,13 +13,12 @@
     }
   };
 
-  // Lazy load
   const lazyImages = document.querySelectorAll(".lazy-image");
 
   const options = {
-    root: null, // Use the viewport as the root
-    rootMargin: "0px", // No margin
-    threshold: 0.1, // Trigger when 10% of the element is visible
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
   };
 
   function handleIntersection(entries, observer) {
@@ -39,17 +38,6 @@
     imageObserver.observe(image);
   });
 
-  // Event handling for the dropdown
-  // const dropdownButton = select('#navbarDropdown');
-
-  // dropdownButton.addEventListener('click', () => {
-  //   const dropdownMenu = select('.dropdown-menu');
-  //   // Toggle the visibility of the dropdown menu
-  //   dropdownMenu.classList.toggle('show');
-  // });
-  /**
-   * Easy event listener function of portfolio
-   */
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all);
     if (selectEl) {
@@ -145,9 +133,7 @@
     onscroll(document, toggleBacktotop);
   }
 
-  // navbar data
   document.addEventListener("DOMContentLoaded", function () {
-    // Add a click event listener to the mobile-nav-toggle element
     var mobileNavToggle = document.querySelector(".mobile-nav-toggle");
     var navbar = document.querySelector(".navbar");
 
@@ -156,10 +142,7 @@
       this.classList.toggle("bi-list");
       this.classList.toggle("bi-x");
     });
-
-    // Add click event listeners to dropdown links
     var dropdownLinks = document.querySelectorAll(".navbar .dropdown > a");
-
     dropdownLinks.forEach(function (link) {
       link.addEventListener(
         "click",
@@ -195,51 +178,6 @@
     });
   }
 
-  /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: ".glightbox",
-  });
-
-  /**
-   * Skills animation
-   */
-  // let skilsContent = select('.skills-content');
-  // if (skilsContent) {
-  //   new Waypoint({
-  //     element: skilsContent,
-  //     offset: '80%',
-  //     handler: function(direction) {
-  //       let progress = select('.progress .progress-bar', true);
-  //       progress.forEach((el) => {
-  //         el.style.width = el.getAttribute('aria-valuenow') + '%'
-  //       });
-  //     }
-  //   })
-  // }
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper(".testimonials-slider", {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    slidesPerView: "auto",
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-  });
-
-  /**
-   * Porfolio isotope and filter
-   */
   window.addEventListener("load", () => {
     let portfolioContainer = select(".portfolio-container");
     if (portfolioContainer) {
@@ -270,45 +208,4 @@
       );
     }
   });
-
-  /**
-   * Initiate portfolio lightbox
-   */
-  const portfolioLightbox = GLightbox({
-    selector: ".portfolio-lightbox",
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper(".portfolio-details-slider", {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-  });
-
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener("load", () => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
-      once: true,
-      mirror: false,
-    });
-  });
-
-  /**
-   * Initiate Pure Counter
-   */
-  new PureCounter();
 })();

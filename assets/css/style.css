@@ -16943,36 +16943,33 @@ h5.texti {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-body::--webkit-scrollbar {
+body:state(webkit-scrollbar) {
   width: 12px;
   /* width of the entire scrollbar */
 }
 
-body::--webkit-scrollbar-track {
+body:state(webkit-scrollbar-track) {
   background: transparent;
   /* color of the tracking area */
 }
 
-body::--webkit-scrollbar-thumb {
+body:state(webkit-scrollbar-thumb) {
   background-color: #29ab87;
   /* color of the scroll thumb */
 }
 
-/* //scrollbar */
-
 /* div scrollbar */
 
-div::--webkit-scrollbar {
+div:state(webkit-scrollbar) {
   width: 4px;
 }
 
-div::--webkit-scrollbar-track {
+div:state(webkit-scrollbar-track) {
   background: transparent;
   /* color of the tracking area */
 }
 
-div::--webkit-scrollbar-thumb {
+div:state(webkit-scrollbar-thumb) {
   background-color: #29ab87;
   transition: 1s;
   /* color of the scroll thumb */
