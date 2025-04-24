@@ -11,7 +11,6 @@
 
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap" 
       as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="assets/js/jquery.3.6.4.min.js" as="script">
 
   <!-- Favicon (modern approach) -->
   <link rel="icon" href="assets/images/Logo/logo.png" type="image/png">
@@ -2359,26 +2358,26 @@
               resumeIframe.src = 'assets/documents/Resume/Resume.pdf'; 
               resumeSection.style.display = 'block'; 
           }
-      document.addEventListener("DOMContentLoaded", function() {
-          const navToggle = document.getElementById('mobile-nav-toggle');
-          const navLinks = document.getElementById('nav-links');
-          const links = navLinks.getElementsByTagName('a');
-          navToggle.addEventListener('click', function() {
-              navLinks.classList.toggle('d-none'); 
-              navToggle.classList.toggle('fa-list');  
-              navToggle.classList.toggle('fa-times'); 
-          });
-          Array.from(links).forEach(link => {
-              link.addEventListener('click', function() {
-                  if (window.innerWidth < 992) {  
-                      navToggle.click();  
-                  }
+          document.addEventListener("DOMContentLoaded", function() {
+              const navToggle = document.getElementById('mobile-nav-toggle');
+              const navLinks = document.getElementById('nav-links');
+              const links = navLinks.getElementsByTagName('a');
+              navToggle.addEventListener('click', function() {
+                  navLinks.classList.toggle('d-none'); 
+                  navToggle.classList.toggle('fa-list');  
+                  navToggle.classList.toggle('fa-times'); 
               });
-          });
-      });
-      document.addEventListener("DOMContentLoaded", function () {
+              Array.from(links).forEach(link => {
+                  link.addEventListener('click', function() {
+                      if (window.innerWidth < 992) {  
+                          navToggle.click();  
+                      }
+                  });
+              });
+           });
+      
+            document.addEventListener("DOMContentLoaded", function () {
                     const birthDate = '2001-11-27';
-
                     function calculateAge(birthDate) {
                       const birthDateObj = new Date(birthDate);
                       const currentDate = new Date();
@@ -2394,29 +2393,24 @@
 
                     const age = calculateAge(birthDate);
                     document.getElementById("age").textContent = age;
-                  });
+              });
 
-                  $(document).ready(function(){
-
+                   
+      </script>
+      <!-- gallery -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+      $(document).ready(function(){
           $(".filter-button").click(function(){
               var value = $(this).attr('data-filter');
               
-              if(value == "all")
-              {
-                  $('.filter').show('1000');
-              }
-              else
-              {
-                  $(".filter").not('.'+value).hide('3000');
-                  $('.filter').filter('.'+value).show('3000');
+              if(value == "all") {
+                  $('.gallery_product').show('1000');
+              } else {
+                  $(".gallery_product").not('.'+value).hide('3000');
+                  $('.gallery_product').filter('.'+value).show('3000');
               }
           });
-          
-          if ($(".filter-button").removeClass("active")) {
-      $(this).removeClass("active");
-      }
-      $(this).addClass("active");
-
       });
       </script>
 
