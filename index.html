@@ -25,6 +25,24 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
+<style>
+  body {
+  font-display: swap !important;
+}
+.lazy-image {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  filter: blur(8px);
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+</style>
   <!-- preloader -->
   <div id="preloader">
     <div class="preloader-icon"></div>
